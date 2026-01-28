@@ -1,0 +1,398 @@
+<!-- ===================================================== -->
+<!-- =============== LOCATION MANAGEMENT PAGE ============= -->
+<!-- ===================================================== -->
+
+<style>
+/* ===================================================== */
+/* ====================== GLOBAL ======================== */
+/* ===================================================== */
+
+.location-page {
+  background: #eef6ff;
+  padding: 24px;
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.location-page h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* ===================================================== */
+/* =================== FILTER CARD ====================== */
+/* ===================================================== */
+
+.filter-card {
+  background: #f7fbff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+  margin-bottom: 26px;
+}
+
+.filter-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.filter-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 14px;
+}
+
+.filter-grid select {
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid #9ca3af;
+  background: #ffffff;
+}
+
+.filter-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.btn-clear {
+  background: #ffffff;
+  border: 1px solid #9ca3af;
+  padding: 8px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.btn-apply {
+  background: #6f6af8;
+  color: #ffffff;
+  border: none;
+  padding: 8px 24px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* ===================================================== */
+/* ==================== TABLE CARD ====================== */
+/* ===================================================== */
+
+.table-card {
+  background: #f7fbff;
+  border-radius: 16px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+.table-card h3 {
+  padding: 16px 20px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background: #e9f4ff;
+  padding: 14px;
+  text-align: left;
+  font-size: 13px;
+}
+
+td {
+  padding: 14px;
+  font-size: 13px;
+}
+
+tr {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* ===================================================== */
+/* ==================== BADGES ========================== */
+/* ===================================================== */
+
+.badge-urban {
+  background: #c7f9cc;
+  color: #065f46;
+  padding: 4px 14px;
+  border-radius: 999px;
+}
+
+.badge-rural {
+  background: #fde2e2;
+  color: #7f1d1d;
+  padding: 4px 14px;
+  border-radius: 999px;
+}
+
+/* ===================================================== */
+/* ==================== ACTIONS ========================= */
+/* ===================================================== */
+
+.actions {
+  display: flex;
+  gap: 14px;
+}
+
+.actions i {
+  cursor: pointer;
+}
+
+.actions i:last-child {
+  color: red;
+}
+</style>
+
+<!-- ===================================================== -->
+<!-- =================== PAGE CONTENT =================== -->
+<!-- ===================================================== -->
+
+<div class="location-page">
+
+  <h2><i data-lucide="map-pin"></i> Location Management</h2>
+
+  <!-- ================= FILTER CARD ================= -->
+
+  <div class="filter-card">
+    <div class="filter-title">Filter Location</div>
+
+    <div class="filter-grid">
+      <select id="country">
+        <option value="">Select Country</option>
+      </select>
+
+      <select id="state" disabled>
+        <option value="">Select State</option>
+      </select>
+
+      <select id="zone" disabled>
+        <option value="">Select Zone</option>
+      </select>
+
+      <select id="district" disabled>
+        <option value="">Select District</option>
+      </select>
+
+      <select id="city" disabled>
+        <option value="">Select City</option>
+      </select>
+
+      <select id="status">
+        <option value="">All Status</option>
+        <option>Urban</option>
+        <option>Rural</option>
+      </select>
+    </div>
+
+    <div class="filter-actions">
+      <button class="btn-clear">Clear</button>
+      <button class="btn-apply">Apply</button>
+    </div>
+  </div>
+
+  <!-- ================= TABLE ================= -->
+
+  <div class="table-card">
+    <h3>Location Records</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Country</th>
+          <th>State</th>
+          <th>Zone</th>
+          <th>District</th>
+          <th>City</th>
+          <th>Area</th>
+          <th>Total Institutions</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>India</td>
+          <td>Karnataka</td>
+          <td>South</td>
+          <td>Bengaluru</td>
+          <td>Bengaluru</td>
+          <td><span class="badge-urban">Urban</span></td>
+          <td>250</td>
+          <td class="actions">
+            <i data-lucide="eye"></i>
+            <i data-lucide="pencil"></i>
+            <i data-lucide="trash-2"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ===================================================== -->
+<!-- ====================== SCRIPT ====================== -->
+<!-- ===================================================== -->
+
+<script>
+/* ===================================================== */
+/* ========= LOCATION HIERARCHY DATA (STATIC) =========== */
+/* ===================================================== */
+
+const locationData = {
+  India: {
+    Karnataka: {
+      South: {
+        Bengaluru: ["Bengaluru"],
+        Mysuru: ["Mysuru"]
+      }
+    },
+    "Tamil Nadu": {
+      South: {
+        Coimbatore: ["Coimbatore"],
+        Chennai: ["Chennai"]
+      }
+    }
+  }
+};
+
+/* ===================================================== */
+/* ================= DROPDOWN HANDLERS ================== */
+/* ===================================================== */
+
+const country = document.getElementById("country");
+const state = document.getElementById("state");
+const zone = document.getElementById("zone");
+const district = document.getElementById("district");
+const city = document.getElementById("city");
+
+/* Populate Country */
+Object.keys(locationData).forEach(c => {
+  country.add(new Option(c, c));
+});
+
+/* Country → State */
+country.addEventListener("change", () => {
+  reset(state, zone, district, city);
+  if (!country.value) return;
+
+  Object.keys(locationData[country.value])
+    .forEach(s => state.add(new Option(s, s)));
+
+  state.disabled = false;
+});
+
+/* State → Zone */
+state.addEventListener("change", () => {
+  reset(zone, district, city);
+  if (!state.value) return;
+
+  Object.keys(locationData[country.value][state.value])
+    .forEach(z => zone.add(new Option(z, z)));
+
+  zone.disabled = false;
+});
+
+/* Zone → District */
+zone.addEventListener("change", () => {
+  reset(district, city);
+  if (!zone.value) return;
+
+  Object.keys(locationData[country.value][state.value][zone.value])
+    .forEach(d => district.add(new Option(d, d)));
+
+  district.disabled = false;
+});
+
+/* District → City */
+district.addEventListener("change", () => {
+  reset(city);
+  if (!district.value) return;
+
+  locationData[country.value][state.value][zone.value][district.value]
+    .forEach(c => city.add(new Option(c, c)));
+
+  city.disabled = false;
+});
+
+/* Utility reset function */
+function reset(...elements) {
+  elements.forEach(el => {
+    el.innerHTML = `<option value="">Select ${el.id.charAt(0).toUpperCase() + el.id.slice(1)}</option>`;
+    el.disabled = true;
+  });
+}
+
+/* ===================================================== */
+/* ================= APPLY FILTER LOGIC ================= */
+/* ===================================================== */
+
+document.querySelector(".btn-apply").addEventListener("click", () => {
+  const filters = {
+    country: country.value,
+    state: state.value,
+    zone: zone.value,
+    district: district.value,
+    city: city.value,
+    status: document.getElementById("status").value
+  };
+
+  document.querySelectorAll("tbody tr").forEach(row => {
+    const cells = row.querySelectorAll("td");
+
+    const rowData = {
+      country: cells[0].innerText,
+      state: cells[1].innerText,
+      zone: cells[2].innerText,
+      district: cells[3].innerText,
+      city: cells[4].innerText,
+      status: cells[5].textContent.trim()
+    };
+
+    let visible = true;
+
+    Object.keys(filters).forEach(key => {
+      if (
+        filters[key] &&
+        rowData[key].toLowerCase() !== filters[key].toLowerCase()
+      ) {
+        visible = false;
+      }
+    });
+
+    row.style.display = visible ? "" : "none";
+  });
+});
+
+/* ===================================================== */
+/* ================= CLEAR FILTER LOGIC ================= */
+/* ===================================================== */
+
+document.querySelector(".btn-clear").addEventListener("click", () => {
+  document.querySelectorAll(".filter-grid select").forEach(select => {
+    select.selectedIndex = 0;
+    if (select.id !== "country" && select.id !== "status") {
+      select.disabled = true;
+    }
+  });
+
+  document.querySelectorAll("tbody tr").forEach(row => {
+    row.style.display = "";
+  });
+});
+
+/* ===================================================== */
+/* ================= ICON INITIALIZATION ================ */
+/* ===================================================== */
+
+lucide.createIcons();
+</script>

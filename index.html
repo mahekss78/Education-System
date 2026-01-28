@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>EduTech Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- ================= GOOGLE FONT ================= -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- ================= LUCIDE ICONS ================= -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+  if (localStorage.getItem("isLoggedIn") !== "true") {
+    window.location.href = "home.html";
+  }
+</script>
+
+<style>
+/* ================= ROOT VARIABLES ================= */
+:root {
+  --blue: #2563eb;
+  --green: #22c55e;
+  --sidebar-bg: #e0f2fe;
+  --sidebar-hover: #bae6fd;
+  --bg-gradient: linear-gradient(135deg, #e6f9f4, #eef4ff);
+  --text-dark: #0f172a;
+  --card-bg: #ffffff;
+}
+
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+/* ================= BODY ================= */
+body {
+  height: 100vh;
+  display: flex;
+  background: var(--bg-gradient);
+  overflow: hidden;
+}
+
+/* ================= SIDEBAR ================= */
+.sidebar {
+  width: 260px;
+  background: var(--sidebar-bg);
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s ease, transform 0.3s ease;
+}
+
+.sidebar.collapsed { width: 80px; }
+
+/* ---------- LOGO ---------- */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.logo span {
+  transition: opacity 0.25s ease;
+}
+
+.sidebar.collapsed .logo span {
+  opacity: 0;
+}
+
+/* ---------- MENU ---------- */
+.menu {
+  flex: 1;
+  padding: 10px;
+}
+
+.menu a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  position: relative;
+}
+
+.menu a:hover,
+.menu a.active {
+  background: var(--sidebar-hover);
+}
+
+.sidebar.collapsed .menu span {
+  display: none;
+}
+
+.sidebar.collapsed .menu a {
+  justify-content: center;
+}
+
+.menu a.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10%;
+  width: 4px;
+  height: 80%;
+  background: linear-gradient(var(--blue), var(--green));
+}
+
+/* ================= MAIN ================= */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  background: white;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.toggle-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* ---------- NAV RIGHT ---------- */
+.nav-right {
+  display: flex;
+  gap: 20px;
+  position: relative;
+}
+
+.profile {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* ---------- DROPDOWN ---------- */
+.dropdown {
+  position: absolute;
+  top: 55px;
+  right: 0;
+  width: 170px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  display: none;
+}
+
+.dropdown a {
+  padding: 12px 16px;
+  display: block;
+  text-decoration: none;
+  color: #0f172a;
+}
+
+.dropdown a:hover {
+  background: #f1f5f9;
+}
+
+/* ================= CONTENT ================= */
+.content {
+  padding: 24px;
+  overflow-y: auto;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    height: 100%;
+    transform: translateX(-100%);
+  }
+  .sidebar.sidebar-open {
+    transform: translateX(0);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===================================================== -->
+<!-- ======================= SIDEBAR ==================== -->
+<!-- ===================================================== -->
+<aside class="sidebar" id="sidebar">
+
+  <!-- LOGO -->
+  <div class="logo">
+    <i data-lucide="graduation-cap"></i>
+    <span>EduTech</span>
+  </div>
+
+  <!-- MENU ITEMS -->
+  <div class="menu">
+
+    <!-- Dashboard -->
+    <a onclick="loadPage('pages/dashboard.html', this)" class="active">
+      <i data-lucide="layout-dashboard"></i>
+      <span>Dashboard</span>
+    </a>
+
+    
+
+    <!-- Education -->
+    <a onclick="loadPage('education-cards.html', this)">
+      <i data-lucide="book-open"></i>
+      <span>Education</span>
+    </a>
+
+    <!-- Location -->
+    <a onclick="loadPage('pages/location-ui/location.html', this)">
+      <i data-lucide="map-pin"></i>
+      <span>Location</span>
+    </a>
+
+    <!-- Contact -->
+    <a onclick="loadPage('pages/contact.html', this)">
+      <i data-lucide="phone"></i>
+      <span>Contact</span>
+    </a>
+    
+    <!-- Status -->
+    <a onclick="loadPage('pages/status.html', this)">
+      <i data-lucide="activity"></i>
+      <span>Status</span>
+    </a>
+
+    <!-- Profile (NEW) -->
+    <a onclick="loadPage('pages/profile.html', this)">
+      <i data-lucide="user"></i>
+      <span>Profile</span>
+    </a>
+
+    <!-- ================= ADD NEW MENU ITEMS BELOW ================= -->
+    <!--
+    <a onclick="loadPage('pages/newpage.html', this)">
+      <i data-lucide="file"></i>
+      <span>New Page</span>
+    </a>
+    -->
+
+  </div>
+</aside>
+
+<!-- ===================================================== -->
+<!-- ======================== MAIN ====================== -->
+<!-- ===================================================== -->
+<div class="main">
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <button class="toggle-btn" onclick="toggleSidebar()">
+      <i data-lucide="menu"></i>
+    </button>
+
+    <div class="nav-right">
+      <i data-lucide="bell"></i>
+
+      <!-- PROFILE IMAGE -->
+      <img src="assets/profile.png" alt="Profile Picture"
+           class="profile"
+           onclick="toggleProfile()" />
+
+      <!-- DROPDOWN -->
+      <div class="dropdown" id="profileDropdown">
+
+        <!-- Profile -->
+        <a onclick="loadPage('pages/profile.html', document.querySelector('.menu a:last-child'))">
+          Profile
+        </a>
+
+        <!-- Logout -->
+       <a href="#" onclick="logout()">Logout</a>
+
+
+        <!-- ===== ADD MORE DROPDOWN ITEMS HERE ===== -->
+        <!-- <a href="#">Settings</a> -->
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= DYNAMIC PAGE CONTENT ================= -->
+  <main class="content" id="content"></main>
+</div>
+
+<!-- ===================================================== -->
+<!-- ======================= SCRIPT ====================== -->
+<!-- ===================================================== -->
+ <script src="js/data.js"></script>
+
+<script>
+lucide.createIcons();
+
+/* ---------- SIDEBAR TOGGLE ---------- */
+function toggleSidebar() {
+  const sidebar = document.getElementById("sidebar");
+  if (window.innerWidth <= 768) {
+    sidebar.classList.toggle("sidebar-open");
+  } else {
+    sidebar.classList.toggle("collapsed");
+  }
+}
+
+/* ---------- PROFILE DROPDOWN ---------- */
+function toggleProfile() {
+  const d = document.getElementById("profileDropdown");
+  d.style.display = d.style.display === "block" ? "none" : "block";
+}
+
+document.addEventListener("click", e => {
+  if (!e.target.closest(".nav-right")) {
+    profileDropdown.style.display = "none";
+  }
+});
+
+/* ---------- PAGE LOADER (SPA CORE) ---------- */
+function loadPage(page, el) {
+  fetch(page)
+    .then(res => res.text())
+    .then(html => {
+      const content = document.getElementById("content");
+      content.innerHTML = html;
+
+      // clear old scripts
+      const oldScript = document.getElementById("dynamic-script");
+      if (oldScript) oldScript.remove();
+
+        // ✅ DASHBOARD JS
+      if (page.includes("dashboard")) {
+        const script = document.createElement("script");
+        script.src = "js/dashboard.js";   // correct path
+        script.id = "dynamic-script";
+        document.body.appendChild(script);
+      }
+
+   if (page.includes("location")) {
+  // Remove old location script if exists
+  const oldScript = document.getElementById("dynamic-script");
+  if (oldScript) oldScript.remove();
+
+  const script = document.createElement("script");
+  script.src = "js/script.js";
+  script.id = "dynamic-script";
+
+  script.onload = () => {
+    if (window.initLocationPage) window.initLocationPage();
+  };
+
+  document.body.appendChild(script);
+}
+
+if (page.includes("contact")) {
+  // Remove old script if any
+  const oldScript = document.getElementById("dynamic-script");
+  if (oldScript) oldScript.remove();
+
+  // Create new script
+  const script = document.createElement("script");
+  script.src = "js/contact.js";
+  script.id = "dynamic-script";
+
+  script.onload = () => {
+    // Wait a tiny moment to ensure HTML is rendered
+    setTimeout(() => {
+      if (window.initContactPage) window.initContactPage();       // Table view
+      if (window.initContactCardsPage) window.initContactCardsPage(); // Card view
+    }, 50); 
+  };
+
+  document.body.appendChild(script);
+}
+if (page.includes("status")) {
+  // Remove old script if any
+  const oldScript = document.getElementById("dynamic-script");
+  if (oldScript) oldScript.remove();
+
+  // Create new script for Status page
+  const script = document.createElement("script");
+  script.src = "js/status.js"; // your status JS file
+  script.id = "dynamic-script";
+
+  script.onload = () => {
+    // Ensure table renders after script is loaded
+    if (window.renderTable) window.renderTable(window.statusData || []);
+    lucide.createIcons(); // Recreate lucide icons in table
+  };
+
+  document.body.appendChild(script);
+}
+
+
+
+
+
+      // menu active
+      document.querySelectorAll(".menu a")
+        .forEach(a => a.classList.remove("active"));
+      if (el) el.classList.add("active");
+    });
+}
+// 🔥 AUTO LOAD DASHBOARD ON FIRST PAGE LOAD
+window.addEventListener("DOMContentLoaded", () => {
+  const dashboardLink = document.querySelector(".menu a.active");
+  loadPage("pages/dashboard.html", dashboardLink);
+});
+
+// ✅ GLOBAL LOGOUT FUNCTION (IMPORTANT)
+window.logout = function () {
+  console.log("Logout clicked");
+
+  // Clear auth state
+  localStorage.removeItem("isLoggedIn");
+
+  // Hard redirect to login page (NO navbar, NO SPA)
+  window.location.href = "home.html";
+};
+
+
+</script>
+
+</body>
+</html>

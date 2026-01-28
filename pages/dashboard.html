@@ -1,0 +1,264 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard</title>-->
+
+  <!-- Tailwind CSS (for compatibility with add-record.html) -->
+  <!--<script src="https://cdn.tailwindcss.com"></script>-->
+
+  <!-- Lucide Icons -->
+  <!--<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>-->
+  <!-- ================= DASHBOARD STYLES ================= -->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+.dashboard {
+  font-family: 'Poppins', sans-serif;
+}
+
+.dashboard-header {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stats {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.stat-box {
+  flex: 1;
+  padding: 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.box1 { background: #d9c6c9; }
+.box2 { background: #c9d1f7; }
+.box3 { background: #cae9cd; }
+.box4 { background: #e5e1aa; }
+
+.stat-number {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.search-add-row {
+  background: #f0f4fb;
+  display: flex;
+  gap: 12px;
+  padding: 16px 20px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  align-items: center;
+}
+
+.search-container {
+  position: relative;
+  flex: 1;
+}
+
+.search-input {
+  width: 100%;
+  border: 1px solid #d4d9e8;
+  border-radius: 15px;
+  padding: 8px 40px 8px 16px;
+  outline: none;
+}
+
+.search-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  pointer-events: none;
+}
+
+.btn {
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 8px 20px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: transform 0.2s ease;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+.btn-view {
+  background: white;
+  border: 1px solid black;
+}
+
+.btn-add {
+  background: #6E6CED;
+  color: white;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+}
+
+thead tr {
+  background: #f0f4fb;
+}
+
+tbody tr {
+  background: white;
+  box-shadow: 0 0 3px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+tbody tr:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+td, th {
+  padding: 12px 15px;
+  font-size: 13px;
+  text-align: left;
+}
+
+.type-btech {
+  background:#b8c9ff;
+  padding:4px 10px;
+  border-radius:15px;
+}
+
+.type-polytechnic {
+  background:#f9c7f7;
+  padding:4px 10px;
+  border-radius:15px;
+}
+
+.type-bba {
+  background:#fdf3a6;
+  padding:4px 10px;
+  border-radius:15px;
+}
+
+.status-active {
+  background:#f7f9fb;
+  padding:4px 10px;
+  border-radius:15px;
+}
+
+.status-inactive {
+  background:#f6d6d6;
+  padding:4px 10px;
+  border-radius:15px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+</style>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+<!-- ================= DASHBOARD CONTENT ================= -->
+<div class="dashboard">
+
+  <h2 class="dashboard-header">
+    <i data-lucide="building-2"></i> Dashboard
+  </h2>
+
+  <!-- ================= STATS ================= -->
+  <section class="stats">
+    <div class="stat-box box1">
+      <div><i data-lucide="file-text"></i> Total Institutions</div>
+      <div class="stat-number" id="total-institutions">0</div>
+    </div>
+
+    <div class="stat-box box2">
+      <div><i data-lucide="check-circle-2"></i> Active Institutions</div>
+      <div class="stat-number" id="active-institutions">0</div>
+    </div>
+
+    <div class="stat-box box3">
+      <div><i data-lucide="check-circle-2"></i> Inactive Institutions</div>
+      <div class="stat-number" id="inactive-institutions">0</div>
+    </div>
+
+    <div class="stat-box box4">
+      <div><i data-lucide="award"></i> Pending Approval</div>
+      <div class="stat-number">0</div>
+    </div>
+  </section>
+
+  <!-- ================= SEARCH & ACTIONS ================= -->
+  <section class="search-add-row">
+    <div class="search-container">
+      <input class="search-input" placeholder="Search by college, university..." />
+      <i data-lucide="search" class="search-icon"></i>
+    </div>
+
+    <button class="btn btn-view">
+      <i data-lucide="file-text"></i> View Records
+    </button>
+
+    <!-- ✅ FULL PAGE NAVIGATION -->
+    <button class="btn btn-add" onclick="window.location.href='add-record.html'">
+      <i data-lucide="plus"></i> Add Record
+    </button>
+  </section>
+
+  <!-- ================= TABLE ================= -->
+  <section>
+    <table>
+      <thead>
+        <tr>
+          <th>College</th>
+          <th>University</th>
+          <th>Location</th>
+          <th>Type</th>
+          <th>Area</th>
+          <th>Status</th>
+          <th>Rank</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="table-body"></tbody>
+    </table>
+  </section>
+
+</div>
+
+<!-- ================= DASHBOARD SCRIPT ================= -->
+<script src="../js/data.js"></script>
+<script>
+  calculateStats(instituteData);
+  populateTable(instituteData);
+  lucide.createIcons();
+
+
+
+
+
+</script>

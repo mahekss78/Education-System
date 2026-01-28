@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Education Cards</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-[#f4faff] min-h-screen p-6">
+
+  <!-- Search -->
+  <div class="max-w-7xl mx-auto mb-6">
+    <div class="relative">
+      <input
+        type="text"
+        placeholder="Search by University or college ..."
+        class="w-full rounded-xl border border-blue-300 px-12 py-3 text-sm
+               focus:ring-2 focus:ring-blue-400 outline-none bg-white"
+      />
+      <i data-lucide="search"
+         class="absolute left-4 top-3.5 w-5 text-blue-400"></i>
+    </div>
+  </div>
+
+  <!-- Cards Grid -->
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    <!-- CARD -->
+    <!-- DUPLICATE CARD 1 -->
+<div class="bg-white rounded-2xl p-5 border shadow-sm">
+  <div class="flex justify-between items-start">
+    <h3 class="font-semibold text-gray-800">Global Institute of Engineering</h3>
+    <span class="px-3 py-1 text-xs rounded-full bg-blue-100 text-blue-700">B.Tech</span>
+  </div>
+  <div class="border-t border-dashed my-3"></div>
+  <p class="text-sm"><b>University:</b><br>State university of Technology</p>
+  <p class="text-sm font-medium mt-3">Branches/Departments:</p>
+  <div class="flex flex-wrap gap-2 mt-2">
+    <span class="chip">Civil</span>
+    <span class="chip">Mechanical</span>
+    <span class="chip">Data Science</span>
+  </div>
+  <div class="flex justify-between text-sm mt-4">
+    <p><b>Location:</b><br>Bengaluru, India</p>
+    <p><b>Ranking:</b><br>#15</p>
+  </div>
+  <div class="flex justify-between items-center mt-5">
+    <span class="status">Active</span>
+    <div class="flex gap-4">
+      <i data-lucide="eye" class="w-4 cursor-pointer"></i>
+      <i data-lucide="pencil" class="w-4 cursor-pointer"></i>
+      <i data-lucide="trash" class="w-4 text-red-500 cursor-pointer"></i>
+    </div>
+  </div>
+</div>
+
+<!-- DUPLICATE CARD 2 -->
+<div class="bg-white rounded-2xl p-5 border shadow-sm">
+  <div class="flex justify-between">
+    <h3 class="font-semibold">Pallotti Institute of Management</h3>
+    <span class="px-3 py-1 text-xs rounded-full bg-pink-100 text-pink-700">BBA</span>
+  </div>
+  <div class="border-t border-dashed my-3"></div>
+  <p class="text-sm"><b>University:</b><br>Central Management University</p>
+  <p class="text-sm font-medium mt-3">Branches/Departments:</p>
+  <div class="flex flex-wrap gap-2 mt-2">
+    <span class="chip">HR</span>
+    <span class="chip">Finance</span>
+    <span class="chip">Marketing</span>
+  </div>
+  <div class="flex justify-between text-sm mt-4">
+    <p><b>Location:</b><br>Pune, India</p>
+    <p><b>Ranking:</b><br>#28</p>
+  </div>
+  <div class="flex justify-between mt-5">
+    <span class="status">Active</span>
+    <div class="flex gap-4">
+      <i data-lucide="eye" class="w-4"></i>
+      <i data-lucide="pencil" class="w-4"></i>
+      <i data-lucide="trash" class="w-4 text-red-500"></i>
+    </div>
+  </div>
+</div>
+
+<!-- DUPLICATE CARD 3 -->
+<div class="bg-white rounded-2xl p-5 border shadow-sm">
+  <div class="flex justify-between">
+    <h3 class="font-semibold">Coastal Polytechnic College</h3>
+    <span class="px-3 py-1 text-xs rounded-full bg-purple-100 text-purple-700">Diploma</span>
+  </div>
+  <div class="border-t border-dashed my-3"></div>
+  <p class="text-sm"><b>University:</b><br>Coastal State Board</p>
+  <p class="text-sm font-medium mt-3">Branches/Departments:</p>
+  <div class="flex flex-wrap gap-2 mt-2">
+    <span class="chip">Electrical</span>
+    <span class="chip">Civil</span>
+    <span class="chip">Automobile</span>
+  </div>
+  <div class="flex justify-between text-sm mt-4">
+    <p><b>Location:</b><br>Puri, Odisha</p>
+    <p><b>Ranking:</b><br>#41</p>
+  </div>
+  <div class="flex justify-between mt-5">
+    <span class="status">Active</span>
+    <div class="flex gap-4">
+      <i data-lucide="eye" class="w-4"></i>
+      <i data-lucide="pencil" class="w-4"></i>
+      <i data-lucide="trash" class="w-4 text-red-500"></i>
+    </div>
+  </div>
+</div>
+
+<!-- DUPLICATE CARD 4 -->
+<div class="bg-white rounded-2xl p-5 border shadow-sm">
+  <div class="flex justify-between">
+    <h3 class="font-semibold">Rural Engineering College</h3>
+    <span class="px-3 py-1 text-xs rounded-full bg-orange-100 text-orange-700">B.Tech</span>
+  </div>
+  <div class="border-t border-dashed my-3"></div>
+  <p class="text-sm"><b>University:</b><br>Rural Development University</p>
+  <p class="text-sm font-medium mt-3">Branches/Departments:</p>
+  <div class="flex flex-wrap gap-2 mt-2">
+    <span class="chip">Agriculture</span>
+    <span class="chip">Civil</span>
+  </div>
+  <div class="flex justify-between text-sm mt-4">
+    <p><b>Location:</b><br>Barabanki, UP</p>
+    <p><b>Ranking:</b><br>#62</p>
+  </div>
+  <div class="flex justify-between mt-5">
+    <span class="px-3 py-1 rounded-full bg-red-100 text-red-700 text-xs">Inactive</span>
+    <div class="flex gap-4">
+      <i data-lucide="eye" class="w-4"></i>
+      <i data-lucide="pencil" class="w-4"></i>
+      <i data-lucide="trash" class="w-4 text-red-500"></i>
+    </div>
+  </div>
+
+
+
+  
+</div>
+
+<!-- DUPLICATE CARD 5–10 -->
+<!-- You can safely copy CARD 1–4 again to reach 10 total cards -->
+
+
+     
+
+
+    <!-- Repeat as needed -->
+  </div>
+
+  <script>lucide.createIcons()</script>
+
+  <style>
+    .chip { @apply px-3 py-1 text-xs rounded-full bg-slate-100 text-gray-700 }
+    .status { @apply px-3 py-1 rounded-full bg-green-100 text-green-700 text-xs }
+  </style>
+
+</body>
+</html>

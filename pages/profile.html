@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Profile</title>
+
+<!-- ================= PROFILE STYLES ================= -->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+body {
+  background: #f8fafc;
+  font-family: 'Poppins', sans-serif;
+}
+
+.profile-page {
+  max-width: 720px;
+  margin: 40px auto;
+  padding: 0 16px;
+}
+
+.profile-card {
+  background: #f0f9ff;
+  padding: 28px;
+  border-radius: 18px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.06);
+}
+
+/* HEADER */
+.profile-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.profile-img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 4px solid #2563eb;
+  object-fit: cover;
+  margin: 0 auto 12px; /* 👈 centers image */
+  display: block;     /* 👈 required */
+}
+
+
+.profile-header h2 {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.muted {
+  color: #64748b;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+/* DIVIDER */
+.divider {
+  margin: 24px 0;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* FORM */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 13px;
+  margin-bottom: 6px;
+  color: #475569;
+  font-weight: 500;
+}
+
+.form-group input {
+  padding: 11px 14px;
+  border-radius: 12px;
+  border: 1px solid #cbd5f5;
+  font-size: 14px;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+
+/* ACTIONS */
+.actions {
+  grid-column: span 2;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.btn {
+  padding: 10px 22px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.btn.primary {
+  background: linear-gradient(135deg, #2563eb, #22c55e);
+  color: white;
+}
+
+.btn.secondary {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .actions {
+    justify-content: center;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= PROFILE CONTENT ================= -->
+<div class="profile-page">
+
+  <div class="profile-card">
+
+    <!-- PROFILE HEADER -->
+    <div class="profile-header">
+      <img src="assets/profile.png" class="profile-img" alt="Profile Image">
+      <h2>Marvin</h2>
+      <p class="muted">marvinM@barone.com • Verified</p>
+      <p class="muted">Executive • Last signed in 4 hours ago</p>
+      <p class="muted">User ID: 234892</p> <!-- Added ID here as extra content -->
+    </div>
+
+    <hr class="divider">
+
+    <!-- PROFILE FORM -->
+    <form class="form-grid" onsubmit="saveProfile(event)">
+      <div class="form-group">
+        <label>First Name</label>
+        <input type="text" value="Marvin">
+      </div>
+
+      <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" value="XXXXXXX">
+      </div>
+
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" value="marvinM@barone.com">
+      </div>
+
+      <div class="form-group">
+        <label>Designation</label>
+        <input type="text" value="Executive">
+      </div>
+
+      <div class="form-group">
+        <label>Phone No.</label>
+        <input type="text" placeholder="XXXXXXXXXX">
+      </div>
+
+      <!-- Additional section inside form if needed -->
+      <div class="form-group" style="grid-column: span 2;">
+        <label>Additional Notes</label>
+        <input type="text" placeholder="Add notes here...">
+      </div>
+
+      <div class="actions">
+        <button type="button" class="btn secondary">Cancel</button>
+        <button type="submit" class="btn primary">Save</button>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+<!-- ================= PROFILE SCRIPT ================= -->
+<script>
+function saveProfile(e) {
+  e.preventDefault();
+  alert("Profile saved successfully!");
+}
+</script>
+
+</body>
+</html>

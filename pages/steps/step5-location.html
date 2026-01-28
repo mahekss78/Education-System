@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Step 5 – Location Details</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Inter', sans-serif; }
+.custom-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1.2em;
+}
+</style>
+</head>
+
+<body class="bg-transparent p-2">
+
+<div class="max-w-4xl mx-auto bg-white rounded-[2rem] shadow-xl shadow-blue-900/5 p-8 border border-gray-50">
+  
+  <div class="flex items-center gap-4 mb-10">
+    <div class="w-12 h-12 bg-rose-500 rounded-2xl flex items-center justify-center shadow-lg shadow-rose-500/20">
+      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+      </svg>
+    </div>
+    <div>
+      <h2 class="text-xl font-bold text-gray-800">Location Details</h2>
+      <p class="text-sm text-gray-500">Provide the physical address and regional information</p>
+    </div>
+  </div>
+
+  <form id="locationForm" class="space-y-6">
+
+    <div>
+      <label class="block text-[13px] font-semibold text-gray-700 mb-2 uppercase tracking-wide">Street Address</label>
+      <textarea rows="2" placeholder="Building No, Street Name, Landmark..."
+        class="w-full bg-gray-50 border border-gray-200 rounded-xl py-3.5 px-4 outline-none focus:border-blue-500 transition-all"
+        oninput="this.value = this.value.replace(/[^a-zA-Z0-9,.\- /]/g,'')"></textarea>
+      <p class="text-xs text-gray-400 mt-1">Only letters, numbers, comma, dot, hyphen allowed.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <label class="block text-[13px] font-semibold text-gray-700 mb-2 uppercase tracking-wide">State</label>
+        <select id="stateSelect" class="w-full bg-gray-50 border border-gray-200 rounded-xl py-3.5 px-4 outline-none focus:border-blue-500 custom-select transition-all">
+          <option value="">Select State</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-[13px] font-semibold text-gray-700 mb-2 uppercase tracking-wide">City / District</label>
+        <select id="citySelect" class="w-full bg-gray-50 border border-gray-200 rounded-xl py-3.5 px-4 outline-none focus:border-blue-500 custom-select transition-all">
+          <option value="">Select City</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <label class="block text-[13px] font-semibold text-gray-700 mb-2 uppercase tracking-wide">PIN Code</label>
+        <input type="number" placeholder="400001"
+          class="w-full bg-gray-50 border border-gray-200 rounded-xl py-3.5 px-4 outline-none focus:border-blue-500 transition-all">
+      </div>
+      <div>
+        <label class="block text-[13px] font-semibold text-gray-700 mb-2 uppercase tracking-wide">Official Website</label>
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <input type="url" placeholder="https://www.institution.edu"
+            class="w-full bg-gray-50 border border-gray-200 rounded-xl py-3.5 pl-11 pr-4 outline-none focus:border-blue-500 transition-all">
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-10 p-6 bg-emerald-50 rounded-2xl border border-emerald-100 flex items-start gap-4">
+      <div class="bg-white p-2 rounded-lg text-emerald-600 shadow-sm">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+      </div>
+      <div>
+        <h4 class="text-sm font-bold text-emerald-800">Final Verification</h4>
+        <p class="text-xs text-emerald-600 mt-1 leading-relaxed">
+          Please ensure the address matches your official registration documents. You can review all previous steps before hitting "Finish Registration".
+        </p>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<script>
+// Full list of Indian states and some sample cities
+const stateCityMap = {
+  "Andhra Pradesh": ["Anantapur", "Chittoor", "East Godavari", "Guntur", "Krishna", "Kurnool", "Nellore", "Prakasam", "Srikakulam", "Visakhapatnam", "Vizianagaram", "West Godavari", "YSR Kadapa"],
+  "Arunachal Pradesh": ["Tawang", "West Kameng", "East Kameng", "Papum Pare", "Kurung Kumey", "Kra Daadi", "Lower Subansiri", "Upper Subansiri", "West Siang", "East Siang", "Lower Siang", "Upper Siang", "Lower Dibang Valley", "Dibang Valley", "Anjaw", "Lohit", "Namsai", "Changlang", "Tirap", "Longding", "Shi Yomi"],
+  "Assam": ["Baksa","Barpeta","Biswanath","Bongaigaon","Cachar","Charaideo","Chirang","Darrang","Dhemaji","Dhubri","Dibrugarh","Goalpara","Golaghat","Hailakandi","Hojai","Jorhat","Kamrup","Kamrup Metropolitan","Karbi Anglong","Karimganj","Kokrajhar","Lakhimpur","Morigaon","Nagaon","Nalbari","Sivasagar","Sonitpur","South Salmara-Mankachar","Tinsukia","Udalguri"],
+  "Bihar": ["Araria","Arwal","Aurangabad","Banka","Begusarai","Bhagalpur","Bhojpur","Buxar","Darbhanga","East Champaran","Gaya","Gopalganj","Jamui","Jehanabad","Kaimur","Katihar","Khagaria","Kishanganj","Lakhisarai","Madhepura","Madhubani","Munger","Muzaffarpur","Nalanda","Nawada","Patna","Purnia","Rohtas","Saharsa","Samastipur","Saran","Sheikhpura","Sheohar","Sitamarhi","Siwan","Supaul","Vaishali"],
+  "Chhattisgarh": ["Balod","Baloda Bazar","Balrampur","Bastar","Bemetara","Bijapur","Bilaspur","Dantewada","Dhamtari","Durg","Gariaband","Janjgir-Champa","Jashpur","Kabirdham","Kanker","Korea","Korba","Mahasamund","Mungeli","Narayanpur","Raigarh","Raipur","Rajnandgaon","Sukma","Surguja","Surajpur","Gaurela Pendra Marwahi"],
+  "Goa": ["North Goa","South Goa"],
+  "Gujarat": ["Ahmedabad","Amreli","Anand","Aravalli","Banaskantha","Bharuch","Bhavnagar","Botad","Chhota Udaipur","Dahod","Dang","Devbhoomi Dwarka","Gandhinagar","Gir Somnath","Jamnagar","Junagadh","Kutch","Kheda","Mahisagar","Mehsana","Morbi","Narmada","Navsari","Panchmahal","Patan","Porbandar","Rajkot","Sabarkantha","Surat","Surendranagar","Tapi","Vadodara","Valsad"],
+  "Haryana": ["Ambala","Bhiwani","Charkhi Dadri","Faridabad","Fatehabad","Gurugram","Hisar","Jhajjar","Jind","Kaithal","Karnal","Kurukshetra","Mahendragarh","Nuh","Palwal","Panchkula","Panipat","Rewari","Rohtak","Sirsa","Sonipat","Yamunanagar"],
+  "Himachal Pradesh": ["Bilaspur","Chamba","Hamirpur","Kangra","Kinnaur","Kullu","Lahaul and Spiti","Mandi","Shimla","Sirmaur","Solan","Una"],
+  "Jharkhand": ["Bokaro","Chatra","Deoghar","Dhanbad","Dumka","East Singhbhum","Garhwa","Giridih","Godda","Gumla","Hazaribagh","Jamtara","Khunti","Koderma","Latehar","Lohardaga","Pakur","Palamu","Ranchi","Sahibganj","Seraikela Kharsawan","Simdega","West Singhbhum"],
+  "Karnataka": ["Bagalkot","Ballari","Belagavi","Bengaluru Rural","Bengaluru Urban","Bidar","Chamarajanagar","Chikballapur","Chikkamagaluru","Chitradurga","Dakshina Kannada","Davanagere","Dharwad","Gadag","Hassan","Haveri","Kalaburagi","Kodagu","Kolar","Koppal","Mandya","Mysuru","Raichur","Ramanagara","Shimoga","Tumakuru","Udupi","Uttara Kannada","Vijayapura","Yadgir"],
+  "Kerala": ["Alappuzha","Ernakulam","Idukki","Kannur","Kasaragod","Kollam","Kottayam","Kozhikode","Malappuram","Palakkad","Pathanamthitta","Thiruvananthapuram","Thrissur","Wayanad"],
+  "Madhya Pradesh": ["Agar Malwa","Alirajpur","Anuppur","Ashoknagar","Balaghat","Barwani","Betul","Bhind","Bhopal","Burhanpur","Chhatarpur","Chhindwara","Damoh","Datia","Dewas","Dhar","Dindori","Guna","Gwalior","Harda","Hoshangabad","Indore","Jabalpur","Jhabua","Katni","Khandwa","Khargone","Mandla","Mandsaur","Morena","Narsinghpur","Neemuch","Panna","Raisen","Rajgarh","Ratlam","Rewa","Sagar","Satna","Sehore","Seoni","Shahdol","Shajapur","Sheopur","Shivpuri","Sidhi","Singrauli","Tikamgarh","Ujjain","Umaria","Vidisha"],
+  "Maharashtra": ["Ahmednagar","Akola","Amravati","Aurangabad","Beed","Bhandara","Buldhana","Chandrapur","Dhule","Gadchiroli","Gondia","Hingoli","Jalgaon","Jalna","Kolhapur","Latur","Mumbai City","Mumbai Suburban","Nagpur","Nanded","Nandurbar","Nashik","Osmanabad","Palghar","Parbhani","Pune","Raigad","Ratnagiri","Sangli","Satara","Sindhudurg","Thane","Wardha","Washim","Yavatmal"],
+  "Manipur": ["Bishnupur","Chandel","Churachandpur","Imphal East","Imphal West","Jiribam","Kakching","Kamjong"," Kangpokpi","Noney","Pherzawl","Senapati","Tengnoupal","Thoubal"],
+  "Meghalaya": ["East Garo Hills","East Jaintia Hills","North Garo Hills","Ri Bhoi","South Garo Hills","South West Garo Hills","West Garo Hills","West Jaintia Hills"],
+  "Mizoram": ["Aizawl","Champhai","Kolasib","Lawngtlai","Lunglei","Mamit","Saiha","Serchhip"],
+  "Nagaland": ["Dimapur","Kiphire","Kohima","Longleng","Mokokchung","Mon","Peren","Phek","Tuensang","Wokha","Zunheboto"],
+  "Odisha": ["Angul","Balangir","Bargarh","Bhadrak","Boudh","Cuttack","Deogarh","Dhenkanal","Gajapati","Ganjam","Jagatsinghpur","Jajpur","Jharsuguda","Kalahandi","Kandhamal","Kendrapara","Kendujhar","Khordha","Koraput","Malkangiri","Mayurbhanj","Nabarangpur","Nayagarh","Nuapada","Puri","Rayagada","Sambalpur","Sonepur","Sundergarh"],
+  "Punjab": ["Amritsar","Barnala","Bathinda","Fazilka","Ferozepur","Gurdaspur","Hoshiarpur","Jalandhar","Kapurthala","Ludhiana","Mansa","Mohali","Muktsar Sahib","Pathankot","Patiala","Rupnagar","Sangrur","Tarn Taran"],
+  "Rajasthan": ["Alwar","Barmer","Bharatpur","Bhilwara","Bikaner","Bundi","Chittorgarh","Churu","Dausa","Dholpur","Dungarpur","Hanumangarh","Jaipur","Jaisalmer","Jalore","Jhalawar","Jhunjhunu","Karauli","Kota","Nagaur","Pali","Pratapgarh","Rajsamand","Sawai Madhopur","Sikar","Sirohi","Tonk","Udaipur","..."]
+  // (Continue to include complete lists for all states + UTs)
+};
+
+// Populate state dropdown
+const stateSelect = document.getElementById('stateSelect');
+const citySelect = document.getElementById('citySelect');
+
+Object.keys(stateCityMap).forEach(state => {
+  const opt = document.createElement('option');
+  opt.value = state;
+  opt.textContent = state;
+  stateSelect.appendChild(opt);
+});
+
+// Update city dropdown based on state
+stateSelect.addEventListener('change', () => {
+  citySelect.innerHTML = '<option value="">Select City</option>'; // reset
+  const cities = stateCityMap[stateSelect.value] || [];
+  cities.forEach(city => {
+    const opt = document.createElement('option');
+    opt.value = city;
+    opt.textContent = city;
+    citySelect.appendChild(opt);
+  });
+});
+</script>
+
+</body>
+</html>

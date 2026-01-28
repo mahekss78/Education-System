@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Location Management</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-100 p-10">
+
+    <!-- ================= FILTER APPLIED POPUP ================= -->
+    <div id="filterPopup" class="fixed top-8 left-1/2 -translate-x-1/2
+               bg-white px-10 py-4 rounded-xl shadow-xl
+               text-green-600 font-semibold text-lg
+               hidden z-50">
+        Filter Applied
+    </div>
+
+    <!-- ================= PAGE CONTAINER ================= -->
+    <div class="max-w-6xl mx-auto">
+
+        <!-- ================= FILTER LOCATION CARD ================= -->
+        <div class="mx-auto p-6 mb-4" style="
+                width:1056px;
+                height:171px;
+                background:#F3F9FF;
+                border-radius:15px;
+                box-shadow:0px 3px 13px 1px rgba(0,0,0,0.25);
+            ">
+            <h2 class="text-lg font-semibold mb-3">
+                Filter Location </h2>
+            <div class="grid grid-cols-4 gap-4">
+
+                <select id="country" class="border rounded-md px-3 py-2">
+                    <option value="">All countries</option>
+                </select>
+
+                <select id="state" class="border rounded-md px-3 py-2">
+                    <option value="">All states</option>
+                </select>
+
+                <select id="zone" class="border rounded-md px-3 py-2">
+                    <option value="">All zones</option>
+                </select>
+
+                <select id="district" class="border rounded-md px-3 py-2">
+                    <option value="">All districts</option>
+                </select>
+
+                <select id="city" class="border rounded-md px-3 py-2">
+                    <option value="">All cities</option>
+                </select>
+
+                <select id="status" class="border rounded-md px-3 py-2">
+                    <option value="">All statuses</option>
+                    <option value="Urban">Urban</option>
+                    <option value="Rural">Rural</option>
+                </select>
+
+                <div class="col-span-2 flex justify-end gap-3">
+                    <button id="clearBtn" class="border px-5 py-2 rounded-md hover:bg-slate-100">
+                        Clear
+                    </button>
+
+                    <button id="applyBtn" class="text-white px-5 py-2 rounded-md hover:opacity-90"
+                        style="background:#6A6AE4;">
+                        Apply
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ================= LOCATION RECORDS CARD ================= -->
+        <div class="mx-auto p-6" style="
+                width:1056px;
+                min-height:630px;
+                background:#F3F9FF;
+                border-radius:10px;
+                box-shadow:0px 4px 12px rgba(0,0,0,0.25);
+            ">
+
+            <h2 class="text-lg font-semibold mb-3">
+                Location Records
+            </h2>
+
+            <div class="overflow-x-auto">
+                <table class="w-full border rounded-lg overflow-hidden table-fixed">
+
+                    <!-- 🔒 FIXED COLUMN WIDTHS -->
+                    <colgroup>
+                        <col style="width:12%">
+                        <col style="width:14%">
+                        <col style="width:8%">
+                        <col style="width:14%">
+                        <col style="width:14%">
+                        <col style="width:12%">
+                        <col style="width:14%">
+                        <col style="width:12%">
+                    </colgroup>
+
+                    <thead style="background:#E2F1FFB2;">
+                        <tr>
+                            <th class="p-3 text-left font-semibold">Country</th>
+                            <th class="p-3 text-left font-semibold">State</th>
+                            <th class="p-3 text-left font-semibold">Zone</th>
+                            <th class="p-3 text-left font-semibold">District</th>
+                            <th class="p-3 text-left font-semibold">City</th>
+                            <th class="p-3 text-left font-semibold">Area Status</th>
+                            <th class="p-3 text-left font-semibold">Total Institutions</th>
+                            <th class="p-3 text-left font-semibold">Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tableBody" class="divide-y">
+                        <!-- rows injected by JS -->
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+   
+
+</body>
+
+</html>

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Education Details</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  body { font-family: 'Inter', sans-serif;
+animation: pageEnter 0.5s ease-out;
+ }
+ @keyframes pageEnter {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Card hover */
+  .card-hover {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 35px rgba(0,0,0,0.08);
+  }
+
+  /* Dropdown animation */
+  .fade-scale {
+    animation: fadeScale 0.18s ease-out forwards;
+  }
+
+  .form-animate > * {
+  opacity: 0;
+  animation: fieldFade 0.45s ease forwards;
+}
+
+.form-animate > *:nth-child(1) { animation-delay: 0.05s }
+.form-animate > *:nth-child(2) { animation-delay: 0.1s }
+.form-animate > *:nth-child(3) { animation-delay: 0.15s }
+.form-animate > *:nth-child(4) { animation-delay: 0.2s }
+.form-animate > *:nth-child(5) { animation-delay: 0.25s }
+
+  @keyframes fadeScale {
+    from { opacity: 0; transform: translateY(-4px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  @keyframes fieldFade {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes focusPulse {
+  0% { box-shadow: 0 0 0 0 rgba(59,130,246,0.2); }
+  100% { box-shadow: 0 0 0 6px rgba(59,130,246,0); }
+}
+
+  /* Pill animation */
+  .pill-pop {
+    animation: pillPop 0.15s ease-out;
+  }
+
+  @keyframes pillPop {
+    from { transform: scale(0.85); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  /* Hover lift */
+  .hover-lift {
+    transition: transform 0.15s ease, background-color 0.15s ease;
+  }
+  .hover-lift:hover {
+    transform: translateY(-1px);
+  }
+  .custom-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+  }
+
+  /* Institution autocomplete */
+  #institutionList {
+    position: absolute;
+    z-index: 60;
+    width: 100%;
+    max-height: 180px;
+    overflow-y: auto;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    
+  }
+
+  /* Branch dropdown */
+  .branches-dropdown {
+    position: relative;
+  }
+
+  .branches-list {
+    position: absolute;
+    z-index: 60;
+    top: 110%;
+    left: 0;
+    width: 100%;
+    max-height: 220px;
+    overflow-y: auto;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    display: none;
+  }
+
+  .branch-category {
+    font-size: 11px;
+    font-weight: 600;
+    color: #64748b;
+    padding: 6px 12px;
+    background: #f8fafc;
+  }
+
+  .branch-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    font-size: 13px;
+    cursor: pointer;
+  }
+
+  .branch-item:hover {
+    background: #eff6ff;
+  }
+
+  .btn-press:active {
+  transform: scale(0.96);
+}
+
+/* ===============================
+   SHAKE (VALIDATION)
+================================ */
+.shake {
+  animation: shake 0.3s;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-4px); }
+  100% { transform: translateX(0); }
+}
+
+</style>
+</head>
+
+<body class="bg-gray-50 p-6 space-y-8 form-animate  ">
+
+<div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-8 card-hover">
+<form class="space-y-7">
+<!-- Header -->
+<div class="flex items-center gap-4 pb-6 border-b border-border">
+  <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg">
+    <svg xmlns="http://www.w3.org/2000/svg"
+      class="w-7 h-7 text-white"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor">
+
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M12 14l9-5-9-5-9 5 9 5z" />
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M12 14l6.16-3.422A12.083 12.083 0 0112 21a12.083 12.083 0 01-6.16-10.422L12 14z" />
+    </svg>
+  </div>
+
+  <div>
+    <h2 class="text-2xl font-bold text-foreground">Education Details</h2>
+    <p class="text-muted-foreground">Core academic identity</p>
+  </div>
+</div>
+
+
+
+
+<!-- Institution Name -->
+<div class="relative">
+  <label class="text-sm font-semibold uppercase">Institution Name * </label>
+ 
+  <input id="institutionName" type="text"
+    class="w-full mt-1 bg-gray-50 border rounded-xl px-4 py-3 transition-all duration-200 ease-out focus:ring-2 focus:ring-blue-200 focus:border-blue-500 focus:bg-white outline-none"
+    
+    placeholder="Search institution name" />
+  <div id="institutionList"></div>
+</div>
+
+<!-- Institution Type + Code -->
+<div class="grid md:grid-cols-2 gap-4">
+  <div>
+    <label class="text-sm font-semibold uppercase">Institution Type</label>
+    <select id ="institutionType" class="w-full mt-1 bg-gray-50 border rounded-xl px-4 py-3 transition-all duration-200 ease-out
+         focus:ring-2 focus:ring-blue-200
+         focus:border-blue-500 focus:bg-white outline-none custom-select">
+      <option value="">Select Type</option>
+    <option value="college">College</option>
+    <option value="university">University</option>
+    <option value="polytechnic">Polytechnic</option>
+    <option value="autonomous">Autonomous</option>
+    </select>
+  </div>
+  <div>
+    <label class="text-sm font-semibold uppercase">Institution Code</label>
+    <input id="institutionCode"
+    class="w-full mt-1 bg-gray-50 border rounded-xl px-4 py-3 transition-all duration-200 ease-out
+         focus:ring-2 focus:ring-blue-200
+         focus:border-blue-500 focus:bg-white outline-none" />
+  </div>
+</div>
+
+<!-- Education Levels -->
+<div>
+  <label class="block text-sm font-semibold text-black-700 mb-3 uppercase tracking-wide">
+    Education Levels
+  </label>
+
+  <div id="levelsContainer" class="flex flex-wrap gap-2">
+    <button type="button"
+      class="level-chip px-5 py-2 rounded-full border bg-white text-gray-500 text-sm font-medium transition-all">
+      Diploma
+    </button>
+
+    <button type="button"
+      class="level-chip px-5 py-2 rounded-full border bg-white text-gray-500 text-sm font-medium transition-all">
+      Undergraduate
+    </button>
+
+    <button type="button"
+      class="level-chip px-5 py-2 rounded-full border bg-white text-gray-500 text-sm font-medium transition-all">
+      Postgraduate
+    </button>
+
+    <button type="button"
+      class="level-chip px-5 py-2 rounded-full border bg-white text-gray-500 text-sm font-medium transition-all">
+      PhD
+    </button>
+  </div>
+</div>
+
+
+<!-- Branches Offered -->
+<div>
+<label class="text-sm font-semibold uppercase">Branches Offered</label>
+
+<div class="branches-dropdown mt-2  ">
+
+<!-- Selected pills -->
+<div id="selectedBranches" class="flex flex-wrap gap-2 mb-2"></div>
+
+<!-- Input -->
+<input id="branchInput" type="text"
+  placeholder="Type or search branches"
+  class="w-full bg-gray-50 border rounded-xl px-4 py-3 transition-all duration-200 ease-out focus:ring-2 focus:ring-blue-200 outline-none" />
+
+<!-- Dropdown -->
+<div id="branchesList" class="branches-list"></div>
+</div>
+</div>
+
+<!-- AICTE / UGC Approval & NAAC Grade -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label class="block text-sm font-semibold text-black-700 mb-2 uppercase tracking-wide">AICTE / UGC Approval Number</label>
+          <input id="aicteCode" type="text" placeholder="e.g. AICTE-12345"
+            class="w-full bg-gray-50 border border-gray-200 rounded-xl py-3.5 px-4 outline-none focus:border-blue-500 transition-all">
+        </div>
+
+        <!-- NAAC Grade -->
+        <div>
+          <label class="block text-sm font-semibold text-black-700 mb-2 uppercase tracking-wide">NAAC Grade</label>
+          <select id="naacGrade" class="w-full bg-white-50 border border-blue-200 rounded-xl py-3.5 px-4 transition-all duration-200 ease-out outline-none focus:border-blue-500 custom-select transition-all">
+            <option value="">Select Grade</option>
+            <option>A++</option>
+            <option>A+</option>
+            <option>A</option>
+            <option>B++</option>
+            <option>B+</option>
+            <option>B</option>
+            <option>C</option>
+          </select>
+        </div>
+      </div>
+
+</form>
+</div>
+
+<script>
+const STORAGE_KEY = 'step1-education';
+const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); // <-- move here
+
+
+/* ---------- LEVEL SINGLE SELECT ---------- */
+document.querySelectorAll('.level-chip').forEach(chip=>{
+  chip.onclick=()=>{
+    document.querySelectorAll('.level-chip').forEach(c=>{
+      c.classList.remove('bg-blue-50','text-blue-600');
+      c.classList.add('bg-white','text-gray-500');
+    });
+    chip.classList.add('bg-blue-50','text-blue-600');
+    saveStep1();
+  };
+});
+
+/* ---------- SAVE ---------- */
+function saveStep1(){
+  const data={
+    institutionName:institutionName.value,
+    institutionType:institutionType.value,
+    institutionCode:institutionCode.value,
+    aicteCode:aicteCode.value,
+    naacGrade:naacGrade.value,
+    level:document.querySelector('.level-chip.bg-blue-50')?.textContent||'',
+    branches:[...document.querySelectorAll('#selectedBranches span')].map(s=>s.dataset.value)
+  };
+  localStorage.setItem(STORAGE_KEY,JSON.stringify(data));
+}
+
+/* ---------- FETCH + INIT ---------- */
+fetch('../registration/institutions.json')
+.then(r=>r.json())
+.then(data=>{
+
+/* AUTOCOMPLETE */
+const institutions=[
+...data.institutionTypes,
+...data.stateUniversities.map(i=>({...i,type:'university'})),
+...data.privateUniversities.map(i=>({...i,type:'university'})),
+...data.colleges
+];
+
+institutionName.oninput=()=>{
+institutionList.innerHTML='';
+const q=institutionName.value.toLowerCase();
+if(!q)return;
+institutions.filter(i=>i.name.toLowerCase().includes(q)).slice(0,8).forEach(i=>{
+const d=document.createElement('div');
+d.textContent=i.name;
+d.className='px-4 py-2 cursor-pointer hover:bg-blue-50';
+d.onclick=()=>{institutionName.value=i.name;institutionType.value=i.type||'';institutionList.innerHTML='';};
+institutionList.appendChild(d);
+});
+};
+
+/* BRANCH MULTI SELECT (UNCHANGED LOGIC) */
+const selected=new Set();
+function addBranch(name){
+if(selected.has(name))return;
+selected.add(name);
+const s=document.createElement('span');
+s.dataset.value=name;
+s.textContent=name+' ✕';
+s.className='px-3 py-1 bg-blue-50 rounded-full cursor-pointer';
+s.onclick=()=>{selected.delete(name);s.remove();saveStep1();};
+selectedBranches.appendChild(s);
+saveStep1();
+}
+
+
+
+const byCat={};
+data.branches.forEach(b=>(byCat[b.category]??=[]).push(b.name));
+
+
+function renderBranches(f=''){
+branchesList.innerHTML='';
+Object.entries(byCat).forEach(([c,i])=>{
+const v=i.filter(x=>x.toLowerCase().includes(f));
+if(!v.length)return;
+const h=document.createElement('div');h.textContent=c.toUpperCase();h.className='branch-category';
+branchesList.appendChild(h);
+v.forEach(n=>{
+const r=document.createElement('div');
+r.textContent=n;r.className='branch-item';
+r.onclick=()=>addBranch(n);
+branchesList.appendChild(r);
+});
+});
+}
+
+branchInput.onfocus=()=>{branchesList.style.display='block';renderBranches();}
+branchInput.oninput=e=>renderBranches(e.target.value.toLowerCase());
+
+document.addEventListener('click', e => {
+  if (!e.target.closest('.branches-dropdown')) {
+    branchesList.style.display = 'none';
+  }
+});
+
+
+// Get saved data first
+const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+
+// Restore text fields
+document.getElementById('institutionName').value = saved.institutionName || '';
+document.getElementById('institutionType').value = saved.institutionType || '';
+document.getElementById('institutionCode').value = saved.institutionCode || '';
+document.getElementById('aicteCode').value = saved.aicteCode || '';
+
+// Restore NAAC select
+const naacEl = document.getElementById('naacGrade');
+if(saved.naacGrade) naacEl.value = saved.naacGrade;
+
+
+document.querySelectorAll('.level-chip').forEach(c=>{
+  c.classList.remove('bg-blue-50','text-blue-600');
+  c.classList.add('bg-white','text-gray-500');
+
+  if(c.textContent === saved.level){
+    c.classList.add('bg-blue-50','text-blue-600');
+    c.classList.remove('bg-white','text-gray-500');
+  }
+});
+
+(saved.branches || []).forEach(addBranch);
+
+/* ---------- AUTO SAVE ON CHANGE ---------- */
+['institutionName','institutionType','institutionCode','aicteCode','naacGrade'].forEach(id => {
+  const el = document.getElementById(id);
+  el.addEventListener('input', saveStep1);
+  el.addEventListener('change', saveStep1);
+});
+
+});
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

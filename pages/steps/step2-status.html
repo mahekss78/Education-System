@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Step 2 – Status Flags</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .custom-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 1.2em;
+    }
+  </style>
+</head>
+
+<body class="bg-transparent p-2">
+
+  <div class="max-w-4xl mx-auto bg-white rounded-[2rem] shadow-xl shadow-blue-900/5 p-8 border border-gray-50">
+    
+    <div class="flex items-center gap-4 mb-8">
+      <div class="w-12 h-12 bg-emerald-500 rounded-2xl flex items-center justify-center shadow-lg shadow-emerald-500/20">
+        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+      </div>
+      <div>
+        <h2 class="text-xl font-bold text-gray-800">Status Flags</h2>
+        <p class="text-sm text-gray-500">Configure the operational and visibility status</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50/50 p-4 rounded-2xl border border-blue-100 flex gap-4 mb-10 overflow-x-auto no-scrollbar">
+      <div class="min-w-[120px] flex-1 bg-white p-3 rounded-xl shadow-sm border border-blue-50 text-center">
+        <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-1">Status</p>
+        <p class="text-emerald-500 font-bold text-sm" id="summaryStatus">Active</p>
+      </div>
+      <div class="min-w-[120px] flex-1 bg-white p-3 rounded-xl shadow-sm border border-blue-50 text-center">
+        <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-1">Type</p>
+        <p class="text-blue-600 font-bold text-sm" id="summaryType">Private</p>
+      </div>
+      <div class="min-w-[120px] flex-1 bg-white p-3 rounded-xl shadow-sm border border-blue-50 text-center">
+        <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-1">Placement</p>
+        <p class="text-gray-400 font-bold text-sm" id="summaryPlacement">N/A</p>
+      </div>
+      <div class="min-w-[120px] flex-1 bg-white p-3 rounded-xl shadow-sm border border-blue-50 text-center">
+        <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-1">Internship</p>
+        <p class="text-gray-400 font-bold text-sm" id="summaryIntern">N/A</p>
+      </div>
+    </div>
+
+    <form id="statusForm" class="space-y-8">
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <label class="block text-[13px] font-semibold text-gray-700 mb-2 uppercase tracking-wide">Institution Status</label>
+          <select id="institutionStatus" class="w-full bg-gray-50 border border-gray-200 rounded-xl py-3.5 px-4 outline-none focus:border-blue-500 custom-select transition-all">
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+            <option value="pending">Pending Approval</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-[13px] font-semibold text-gray-700 mb-2 uppercase tracking-wide">Operational Status</label>
+          <select id="operationalStatus" class="w-full bg-gray-50 border border-gray-200 rounded-xl py-3.5 px-4 outline-none focus:border-blue-500 custom-select transition-all">
+            <option value="Autonomous">Autonomous</option>
+            <option value="Private">Private</option>
+            <option value="Deemed">Deemed</option>
+
+            <option value="affiliated">Affiliated</option>
+            <option value="constituent">Constituent</option>
+
+            <option value="state">State</option>
+            <option value="central">Central</option>
+
+          </select>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 py-6 border-y border-gray-50">
+        <div class="flex items-center justify-between">
+          <div>
+            <label class="block text-[13px] font-semibold text-gray-700">Placement Cell</label>
+            <p class="text-xs text-gray-400">Dedicated career support</p>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" id="placementToggle" class="sr-only peer">
+            <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+          </label>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <div>
+            <label class="block text-[13px] font-semibold text-gray-700">Internship Program</label>
+            <p class="text-xs text-gray-400">Mandatory industry training</p>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" id="internshipToggle" class="sr-only peer">
+            <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+          </label>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-[13px] font-semibold text-gray-700 mb-4 uppercase tracking-wide">Visibility Settings</label>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <label class="flex items-start gap-4 p-4 border-2 border-blue-50 bg-blue-50/20 rounded-2xl cursor-pointer hover:bg-blue-50 transition-all">
+            <input type="radio" name="visibility" value="public" checked class="mt-1 w-4 h-4 text-blue-600 focus:ring-blue-500">
+            <div>
+              <span class="block text-sm font-bold text-gray-800">Public Visibility</span>
+              <span class="block text-xs text-gray-500">Visible to all students and partners on the dashboard.</span>
+            </div>
+          </label>
+          <label class="flex items-start gap-4 p-4 border-2 border-gray-100 rounded-2xl cursor-pointer hover:bg-gray-50 transition-all">
+            <input type="radio" name="visibility" value="private" class="mt-1 w-4 h-4 text-blue-600 focus:ring-blue-500">
+            <div>
+              <span class="block text-sm font-bold text-gray-800">Internal Record</span>
+              <span class="block text-xs text-gray-500">Hidden from public search. Only admins can view this data.</span>
+            </div>
+          </label>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+  <script>
+    // Logic to update the "Status Summary" bar in real-time
+    const pToggle = document.getElementById('placementToggle');
+    const iToggle = document.getElementById('internshipToggle');
+    const pSummary = document.getElementById('summaryPlacement');
+    const iSummary = document.getElementById('summaryIntern');
+
+    pToggle.addEventListener('change', () => {
+      pSummary.innerText = pToggle.checked ? 'Available' : 'N/A';
+      pSummary.className = pToggle.checked ? 'text-emerald-500 font-bold text-sm' : 'text-gray-400 font-bold text-sm';
+    });
+
+    iToggle.addEventListener('change', () => {
+      iSummary.innerText = iToggle.checked ? 'Active' : 'N/A';
+      iSummary.className = iToggle.checked ? 'text-emerald-500 font-bold text-sm' : 'text-gray-400 font-bold text-sm';
+    });
+
+    const institutionStatus = document.getElementById('institutionStatus');
+const operationalStatus = document.getElementById('operationalStatus');
+const summaryStatus = document.getElementById('summaryStatus');
+const summaryType = document.getElementById('summaryType');
+
+institutionStatus.addEventListener('change', () => {
+  const value = institutionStatus.value;
+
+  summaryStatus.innerText =
+    value === 'active' ? 'Active' :
+    value === 'inactive' ? 'Inactive' :
+    'Pending';
+
+  summaryStatus.className =
+    value === 'active'
+      ? 'text-emerald-500 font-bold text-sm'
+      : value === 'inactive'
+      ? 'text-red-500 font-bold text-sm'
+      : 'text-amber-500 font-bold text-sm';
+});
+
+operationalStatus.addEventListener('change', () => {
+  summaryType.innerText =
+    operationalStatus.options[operationalStatus.selectedIndex].text;
+
+  summaryType.className = 'text-blue-600 font-bold text-sm';
+});
+const STORAGE_KEY = 'step2-status';
+
+// Save on any change
+function saveStatus() {
+  const data = {
+    institutionStatus: institutionStatus.value,
+    operationalStatus: operationalStatus.value,
+    placement: pToggle.checked,
+    internship: iToggle.checked,
+    visibility: document.querySelector('input[name="visibility"]:checked')?.value
+  };
+
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
+// Restore on load
+function restoreStatus() {
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (!saved) return;
+
+  const data = JSON.parse(saved);
+
+  institutionStatus.value = data.institutionStatus ?? 'active';
+  operationalStatus.value = data.operationalStatus ?? 'private';
+  pToggle.checked = !!data.placement;
+  iToggle.checked = !!data.internship;
+
+  if (data.visibility) {
+    const radio = document.querySelector(`input[name="visibility"][value="${data.visibility}"]`);
+    if (radio) radio.checked = true;
+  }
+
+  // Trigger UI sync
+  institutionStatus.dispatchEvent(new Event('change'));
+  operationalStatus.dispatchEvent(new Event('change'));
+  pToggle.dispatchEvent(new Event('change'));
+  iToggle.dispatchEvent(new Event('change'));
+}
+
+// Attach autosave
+[
+  institutionStatus,
+  operationalStatus,
+  pToggle,
+  iToggle,
+  ...document.querySelectorAll('input[name="visibility"]')
+].forEach(el => el.addEventListener('change', saveStatus));
+
+restoreStatus();
+
+window.validateStep = function () {
+  if (!institutionStatus.value || !operationalStatus.value) {
+    institutionStatus.classList.add('ring-2', 'ring-red-400');
+    operationalStatus.classList.add('ring-2', 'ring-red-400');
+
+    setTimeout(() => {
+      institutionStatus.classList.remove('ring-2', 'ring-red-400');
+      operationalStatus.classList.remove('ring-2', 'ring-red-400');
+    }, 500);
+
+    return false;
+  }
+
+  return true;
+};
+
+  </script>
+
+</body>
+</html>

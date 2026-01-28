@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Step 3 – Profile Details</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+
+<body class="bg-transparent p-2">
+
+  <div class="max-w-4xl mx-auto bg-white rounded-[2rem] shadow-xl shadow-blue-900/5 p-8 border border-gray-50">
+    
+    <div class="flex items-center gap-4 mb-10">
+      <div class="w-12 h-12 bg-orange-500 rounded-2xl flex items-center justify-center shadow-lg shadow-orange-500/20">
+        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+        </svg>
+      </div>
+      <div>
+        <h2 class="text-xl font-bold text-gray-800">Profile Details</h2>
+        <p class="text-sm text-gray-500">Upload branding and describe your institution</p>
+      </div>
+    </div>
+
+    <form id="profileForm" class="space-y-8">
+
+        <div>
+      <label class="block text-sm font-semibold mb-2">Institution Logo</label>
+
+      <div id="uploadBox"
+        class="border-2 border-dashed rounded-2xl p-6 text-center cursor-pointer bg-gray-50">
+        
+        <div id="logoPreview"
+          class="w-24 h-24 mx-auto bg-white rounded-xl flex items-center justify-center shadow overflow-hidden">
+          <span id="uploadIcon" class="text-blue-500 text-sm">Upload</span>
+        </div>
+
+        <input id="logoInput" type="file" accept="image/*" class="hidden">
+
+        <button type="button" id="deleteLogo"
+          class="hidden mt-3 text-xs text-red-500 underline">
+          Delete image
+        </button>
+         <div id="progressWrap" class="hidden mt-3">
+          <div class="w-full bg-gray-200 rounded-full h-2">
+            <div id="progressBar" class="bg-blue-600 h-2 rounded-full w-0"></div>
+          </div>
+          <p id="uploadText" class="text-xs mt-1">Uploading…</p>
+        </div>
+      </div>
+    </div>
+
+      <div>
+        <label class="block text-[13px] font-semibold text-gray-700 mb-2 uppercase tracking-wide">About Institution</label>
+        <textarea rows="4" placeholder="Briefly describe the institution's history and legacy..."
+          class="w-full bg-gray-50 border border-gray-200 rounded-2xl py-3.5 px-4 outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 focus:bg-white transition-all"></textarea>
+      </div>
+
+      <div>
+        <label class="block text-[13px] font-semibold text-gray-700 mb-4 uppercase tracking-wide">Campus Statistics</label>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-gray-50/80 p-4 rounded-2xl border border-gray-100 shadow-sm">
+            <label class="block text-[11px] font-bold text-gray-400 uppercase mb-2">Total Students</label>
+            <div class="flex items-center gap-3">
+              <div class="p-2 bg-blue-100 text-blue-600 rounded-lg">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a7 7 0 00-7 7v1h11v-1a7 7 0 00-7-7z"></path></svg>
+              </div>
+              <input type="number" placeholder="0" class="bg-transparent w-full text-lg font-bold text-gray-800 outline-none">
+            </div>
+          </div>
+          <div class="bg-gray-50/80 p-4 rounded-2xl border border-gray-100 shadow-sm">
+            <label class="block text-[11px] font-bold text-gray-400 uppercase mb-2">Faculty Count</label>
+            <div class="flex items-center gap-3">
+              <div class="p-2 bg-orange-100 text-orange-600 rounded-lg">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0z"></path></svg>
+              </div>
+              <input type="number" placeholder="0" class="bg-transparent w-full text-lg font-bold text-gray-800 outline-none">
+            </div>
+          </div>
+          <div class="bg-gray-50/80 p-4 rounded-2xl border border-gray-100 shadow-sm lg:col-span-1 sm:col-span-2 lg:block">
+            <label class="block text-[11px] font-bold text-gray-400 uppercase mb-2">Campus Size (Acres)</label>
+            <div class="flex items-center gap-3">
+              <div class="p-2 bg-emerald-100 text-emerald-600 rounded-lg">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h2V5zm2 4h-2v2h2V9z" clip-rule="evenodd"></path></svg>
+              </div>
+              <input type="number" placeholder="0" class="bg-transparent w-full text-lg font-bold text-gray-800 outline-none">
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </form>
+  </div>
+<script>
+
+const uploadBox = document.getElementById('uploadBox');
+const logoInput = document.getElementById('logoInput');
+const previewBox = document.getElementById('logoPreview');
+const deleteBtn = document.getElementById('deleteLogo');
+const progressWrap = document.getElementById('progressWrap');
+const progressBar = document.getElementById('progressBar');
+const uploadText = document.getElementById('uploadText');
+
+uploadBox.addEventListener('click', () => logoInput.click());
+
+logoInput.addEventListener('change', () => {
+  const file = logoInput.files[0];
+  if (!file) return;
+
+  // Show preview
+  const reader = new FileReader();
+  reader.onload = e => {
+    previewBox.innerHTML = `<img src="${e.target.result}" class="w-full h-full object-cover rounded-2xl">`;
+     deleteBtn.classList.remove('hidden');
+    localStorage.setItem('step3-logo', e.target.result);
+  };
+  reader.readAsDataURL(file);
+
+  // Fake upload progress
+ progressWrap.classList.remove('hidden');
+  let progress = 0;
+  const timer = setInterval(() => {
+    progress += 10;
+    progressBar.style.width = progress + '%';
+    if (progress >= 100) {
+      clearInterval(timer);
+      uploadText.textContent = 'Upload complete';
+      setTimeout(() => progressWrap.classList.add('hidden'), 800);
+    }
+  }, 100);
+});
+
+deleteBtn.addEventListener('click', e => {
+  e.stopPropagation();
+  previewBox.innerHTML = `<span id="uploadIcon" class="text-blue-500 text-sm">Upload</span>`;
+  logoInput.value = '';
+  deleteBtn.classList.add('hidden');
+  localStorage.removeItem('step3-logo');
+});
+
+// Restore on page load
+window.addEventListener('load', () => {
+  const logo = localStorage.getItem('step3-logo');
+  if (logo) {
+    previewBox.innerHTML = `<img src="${logo}" class="w-full h-full object-cover rounded-2xl">`;
+    deleteBtn.classList.remove('hidden');
+  }
+});
+
+const STORAGE_KEY = 'step3-profile';
+
+const about = document.getElementById('aboutInstitution');
+const students = document.getElementById('totalStudents');
+const faculty = document.getElementById('facultyCount');
+const campus = document.getElementById('campusSize');
+
+/* -------- SAVE -------- */
+function saveStep3() {
+  const data = {
+    about: about.value,
+    students: students.value,
+    faculty: faculty.value,
+    campus: campus.value
+  };
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
+/* -------- RESTORE -------- */
+function restoreStep3() {
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (!saved) return;
+
+  const data = JSON.parse(saved);
+  about.value = data.about ?? '';
+  students.value = data.students ?? '';
+  faculty.value = data.faculty ?? '';
+  campus.value = data.campus ?? '';
+}
+
+/* -------- EVENTS -------- */
+[about, students, faculty, campus].forEach(el => {
+  el.addEventListener('input', saveStep3);
+  el.addEventListener('change', saveStep3);
+});
+
+/* -------- INIT -------- */
+restoreStep3();
+
+function validateStep3() {
+  const aboutVal = about.value.trim();
+  const studentsVal = students.value.trim();
+  const facultyVal = faculty.value.trim();
+  const campusVal = campus.value.trim();
+  const logo = localStorage.getItem('step3-logo');
+
+  if (!aboutVal && !studentsVal && !facultyVal && !campusVal && !logo) {
+    alert('Please fill at least one field or upload a logo before proceeding.');
+    return false;
+  }
+  return true;
+}
+// ----- Next Button -----
+  const nextBtn = document.getElementById('nextStepBtn');
+  nextBtn.addEventListener('click', () => {
+    if (!validateStep3()) return; // STOP if blank
+    // Proceed to Step 4
+    // Replace this with your actual step navigation code
+    alert('Step 3 validated! Proceeding to Step 4...');
+  });
+</script>
+
+</body>
+</html>

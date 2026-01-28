@@ -1,0 +1,53 @@
+<section class="status-page w-full p-4">
+
+  <h2 class="text-2xl font-semibold mb-6 text-gray-800">Institution Status</h2>
+
+  <!-- Optional Filters -->
+  <div class="flex gap-4 mb-4">
+    <select id="filter-status" class="border px-3 py-2 rounded" onchange="applyFilters()">
+      <option value="">All Status</option>
+      <option value="active">Active</option>
+      <option value="inactive">Inactive</option>
+      <option value="pending">Pending</option>
+    </select>
+
+    <select id="filter-area" class="border px-3 py-2 rounded" onchange="applyFilters()">
+      <option value="">All Areas</option>
+      <option value="urban">Urban</option>
+      <option value="rural">Rural</option>
+    </select>
+
+    <input type="text" id="search-institute" placeholder="Search Institute..."
+           class="border px-3 py-2 rounded flex-1"
+           oninput="searchTable(this.value)" />
+
+    <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+            onclick="clearFilters()">Clear</button>
+    <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+            onclick="refreshStatusData()">Refresh</button>
+  </div>
+
+  <!-- Table container -->
+  <div class="overflow-x-auto bg-white rounded-2xl shadow-lg p-4">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-50">
+        <tr>
+          <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Institution</th>
+          <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Status</th>
+          <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Area</th>
+          <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Ranking</th>
+          <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Last Inspection</th>
+          <th class="px-6 py-3 text-center text-sm font-semibold text-gray-700">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-100" id="statusTableBody">
+        <!-- Rows injected by status.js -->
+      </tbody>
+    </table>
+
+    <div id="empty-state" class="hidden text-center text-gray-500 py-6">
+      No records found.
+    </div>
+  </div>
+
+</section>
